@@ -1,7 +1,9 @@
-import re
+import numpy as np
 
-text = ('### this is sample text with several words')
+z = np.zeros(6).reshape(2, 3)
+o = np.ones(6).reshape(2, 3)
 
-var = '<h{}>{}'.format(len(text.split()[0]), text)
+print(z)
+print(o)
 
-print(var)
+print(np.vstack((z, o)))

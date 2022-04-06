@@ -15,6 +15,8 @@
 ### Sequence Processing Functions
 ### Iterators and Sequences
 ### Two-Dimensional Lists
+import random
+
 
 
 ### Sequences, Lists, and Tuples ###
@@ -114,7 +116,7 @@ def unpacking_sequences():
 ### Primitive bar chart ###
 def prim_bar():
     nums = [19, 3, 5, 7, 11]
-    printf('Index{Value:>8}    Bar')
+    print(f'Index{"Value":>8}    Bar')
 
     for index, value in enumerate(nums):
         print(f'{index:>5}{value:>8}    {"*" * value}')
@@ -134,7 +136,7 @@ def seq_slice():
     numbers = [0, 1, 2, 3, 4, 5, 6, 7]
     numbers[:6]         # Represents a new list of values from index 0 to index 6 not including index 6  
                         # -- [0, 1, 2, 3, 4, 5]
-    numbers[2:6]        # Represents a new list starting from index 2 and not include index 6 
+    numbers[2:6]        # Represents a new list starting from index 2 and not including index 6 
                         # -- [2, 3, 4, 5]
     numbers[6:]         # Represents a new list starting from and including index 6 
                         # -- [6, 7]
@@ -149,7 +151,7 @@ def seq_slice():
     
     # Note: list slicing like this creates a new list. So, when a variable is re-assigned to a slice
     # of a list, it is assigned a new list. The original list is not modified.
-    # We call slicing a *Shallow Copy*. A splice of the original list.
+    # We call slicing a *Shallow Copy*.
 
 
 
@@ -182,6 +184,11 @@ def ref_and_copy():
     a = "first"
     b = "first"
     # Here, a and b will share the same ID. Modifying a or b will change the reference entirely
+    
+    # Key takeaway: Shallow copies create copies of references to objects within a list
+    # If the objects are mutable, the references stay the same when the object is changed (like a list)
+    # If the objects are immutable, the references change. When references change, they are not reflected
+    # in other shallow copies.
 
     ## Deep copies
     # Like shallow copies, deep copies are new objects.
@@ -320,7 +327,7 @@ def gen_ex():
     # List comprehensions and generator expressions share the same syntax,
     # but a generator expression has paranthesis rather than square brackets.
     # Therefore, it is evaluated to produce one value for each loop cycle
-    for i in (item * 2 for item in numbers if x % 2 == 0):
+    for i in (item * 2 for item in numbers if item % 2 == 0):
         print(i, end=' ')
 
     # You can't create a list using a generator expression
