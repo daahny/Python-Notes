@@ -11,6 +11,12 @@
 ### Splitting and Joining Strings
 ### Characters and Character-Testing Methods
 ### Raw Strings
+### Regular Expression Metacharacters
+### Regular Expressions -- Matching Literals
+### Regular Expressions -- Replacing Subsstrings and Splitting Strings
+### Regular Expressions -- Searching and Matching (and re flags)
+### Regular Expressions -- Capturing Substrings in a Match
+### Regular Expressions -- re.compile()
 
 
 
@@ -262,8 +268,8 @@ def cap_sub():
 
     # Note, the tuple indexing on the group() tuple starts at 1 because 0 represents the entire string
     print(result.groups())                  # Tuple -- ('Charlie Cyan', 'demo@example.com')
-    print(result.group(1)))                 # String -- 'Charlie Cyan'
-    print(result.group(0))                   # String -- 'Charlie Cyan, e-mail: demo@example.com'
+    print(result.group(1))                  # String -- 'Charlie Cyan'
+    print(result.group(0))                  # String -- 'Charlie Cyan, e-mail: demo@example.com'
 
 
 
