@@ -177,3 +177,107 @@ def raw_str():
 
 
 
+### Regular Expression Metacharacters
+## Quantifiers
+# {n}   match the preceeding element n times
+# {3,}  match the preceeding element 3 or more times
+# {3,6} match the preceeding element 3, 4, 5, or 6 times
+# *     match the preceeding element any number of times
+# +     match the preceeding element one or more times
+# ?     match the preceeding element zero or one time
+
+## Metacharacters
+# \d    any digit
+# \D    any non-digit
+# \s    any whitespace
+# \S    any non-whitespace
+# \w    any alphanumeric (word) character, includes uppercase and lowercase letters, digits, and an underscore
+# \W    any non word character
+# []    define metacharacters as literal characters -- anything in [] will be treated literally
+# []    define a set -- [A-Z] or [a-z] or [1-9] or [A-Za-z1-9]
+# [^]   define a not set -- [^a-p] means any character not between a and p
+# ()    match whatever regular expression is inside the paranthesis, and indicates the start and end of a group
+
+
+
+
+### Regular Expressions -- Matching Literals
+import re
+def mat_lit():
+    pattern = '02215'
+
+    # Ternary operator fun for ya
+    # re.fullmatch returns a match object that evaluates to True or False if the entirity of the literal arguments are matched
+    # Match objects: https://docs.python.org/3/library/re.html#match-objects
+    'Match' if re.fullmach(pattern, '02215') else 'No match'
+
+    # Notice the regular expression is a raw string. This is to prevent any escaping before the string is passed
+    # to the fullmatch() method
+    'Valid' if re.fullmatch(r'\d{5}', '02215') else 'Invalid'
+
+    
+
+### Regular Expressions -- Replacing Subsstrings and Splitting Strings
+def sub_spl():
+    re.sub(r'\t', ', ', '1\t2\t3\t4')                   # '1, 2, 3, 4'
+
+    re.split(r',\s*', '1, 2,   3,4,  5, 6,   7,8')      # ['1', '2', '3', '4', '5', '6', '7', '8']
+
+
+
+### Regular Expressions -- Searching and Matching
+def re_ser():
+    # re.search() returns an SRE_Match object if a match is found anywhere in the sring.
+    result = re.search('Python', 'Python is fun')
+
+    # Evaluates to result.group(), which is the matching group 'Python'
+    result.group() if result else 'not found'           
+
+
+    # Flags: https://docs.python.org/3/library/re.html#module-contents
+    result = re.search('Sam', 'SAM', flags=re.IGNORECASE)           # Ignores case
+    result = re.search('^e.*$', 'e\na\ne', flags=re.MULTILINE)      # The '^' matches at the beginng of each string AND the beginning of each line
+    result = re.search('.*', '\n', flags=re.DOTALL)                 # . will match new lines as well
+
+
+    # Returns a list of all matched values
+    contact = 'Wally White, Home: 555-555-1234, Work: 555-555-4321'
+    re.findall(r'\d{3}-\d{3}-\d{4}', contact)                       # ['555-555-1234', '555-555-4321']
+    
+    # finditer() returns an iterator that provides SRE_Match objects one at a time
+    for phone in re.finditer(r'\d{3}-\d{3}-\d{4}', contact):
+        print(phone.group())
+    
+
+
+### Regular Expressions -- Capturing Substrings in a Match
+def cap_sub():
+    # Paranthesis () define a set of regular expressions to match. 
+    # Each subexpression (paranthesis containg a regular expressions) will be returned as a group.
+    # These matches can be obrtained using the object groups() method
+    text = 'Charlie Cyan, e-mail: demo@example.com'
+    pattern = r'([A-Z][a-z]+ [A=Z][a-z]+), e-mail: (\w+@\w+\.\w{3})'
+
+    result = re.search(text, pattern)
+
+    # Note, the tuple indexing on the group() tuple starts at 1 because 0 represents the entire string
+    print(result.groups())                  # Tuple -- ('Charlie Cyan', 'demo@example.com')
+    print(result.group(1)))                 # String -- 'Charlie Cyan'
+    print(result.group(0))                   # String -- 'Charlie Cyan, e-mail: demo@example.com'
+
+
+
+### Regular Expressions -- re.compile()
+def re_comp():
+    # re.compile() compiles a regular expression pattern into a regular expression object,
+    # which can be used for matching using its match(), search(), and other methods
+
+    # Using re.compile() is more efficient when the expression will be used several times in a single program
+    pattern = r'^\d{$}$'
+    text = '123'
+    
+    reg_exp_obj = re.compile(pattern)
+    reg_exp_obj.search(text)
+    # is the same as
+    re.search(pattern, text)
+    

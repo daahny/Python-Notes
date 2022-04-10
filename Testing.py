@@ -1,9 +1,6 @@
-import numpy as np
+import re
 
-z = np.zeros(6).reshape(2, 3)
-o = np.ones(6).reshape(2, 3)
 
-print(z)
-print(o)
+equation = '10 + 5'
 
-print(np.vstack((z, o)))
+print(re.search('(\d+) (\+) (\d+)', equation).groups())
