@@ -410,11 +410,11 @@ def seq_proc():
     
 
 ### Fundamental Concept: Iterators and Sequences ###
-# An iterable is antything that can be looped over with a for loop in Python
+# An iterable is anything that can be looped over with a for loop in Python
     # for item in some_iterable:
         # print(item)
 
-# Sequences are a common type of iterable. Lists, tuples, ands strings are all sequences
+# Sequences are a common type of iterable. Lists, tuples, and strings are all sequences
 # Sequences have a specific set of features: 
 # - They can be indexed starting from 0 and ending at length - 1
 # - They have a length
@@ -424,7 +424,7 @@ def seq_proc():
 
 # For loops in Python do not use indexes. They use iterators.
 # An iterator is what's used to power iterables.
-# An iterator can be obtained from any iterator.
+# An iterator can be obtained from any iterable.
 # And the iterator can be used to manually loop over the iterable it came from.
 
 # Example: 3 iterators... a set, a tuples, and a string
