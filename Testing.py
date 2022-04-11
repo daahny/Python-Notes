@@ -1,6 +1,10 @@
-import re
+import json
 
+accounts_dict = {'accounts': [{'account': 100, 'name': 'Jones', 'balance': 24.98}, 
+                              {'account': 200, 'name': 'Doe', 'balance': 345.67}]}
 
-equation = '10 + 5'
+with open('accounts.json', 'w') as accounts:
+    json.dump(accounts_dict, accounts)
 
-print(re.search('(\d+) (\+) (\d+)', equation).groups())
+with open('accounts.json', 'r') as accounts:
+    print(json.dumps(json.load(accounts), indent=4))
