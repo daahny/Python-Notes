@@ -30,12 +30,12 @@ rectangle_area(width=20)
 ### Arbitrary arguments list ###
 # All arugments passed to this function will be packed up into the tuple args
 def average(*args):
-    return sum(args) / len(args)
+    return sum(*args) / len(*args)
 
 average(5, 10) # 7.5
-average (5, 10, 15) #10.0
+average(5, 10, 15) #10.0
 grades = [88, 75, 55]
-average(*grades)
+average(grades)
 
 
 

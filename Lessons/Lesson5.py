@@ -45,7 +45,7 @@ def lists():
     list = []
     for value in range(1, 6):
         list += [value]     # This is okay
-        list += value       # Throws a TypeErrpr: 'int' object is not iterable
+        list += value       # Throws a TypeError: 'int' object is not iterable
 
 
 ### Tuples ###
@@ -91,7 +91,7 @@ def unpacking_sequences():
     # Using unpacking to swap values:
     number1 = 10
     number2 = 20
-    # Create a tuple with these 2 values and unpack them one the same line
+    # Create a tuple with these 2 values and unpack them on the same line
     number1, number2 = (number2, number1)   # swaps number1 and number2
 
     # list() and enumerate()
@@ -397,7 +397,7 @@ def seq_proc():
     # or
     reversed_numbers = [item for item in reversed([10, 3, 7, 1, 9, 4, 2, 8, 5, 6])]
 
-    # zip() is a built-in fucntion that accepts multiple sequences of values, and pairs elements in each sequence into tuples
+    # zip() is a built-in function that accepts multiple sequences of values, and pairs elements in each sequence into tuples
     # zip() doesn't return a sequence, it returns an iterator which may be used to iterate over
     names = ['Bob', 'Sue', 'Amanda']
     grade_point_averages = [3.5, 4.0, 3.75]

@@ -23,7 +23,7 @@
 ### Formatting Strings
 def for_str():
     # Format specifiers -- https://docs.python.org/3/library/string.html#formatspec
-    f'17.489:.2f'    # Round to 2 decimal points as a floating point representation
+    f'{17.489:.2f}'  # Round to 2 decimal points as a floating point representation
 
     f'{65:c}'        # Format the number 65 as a character -- 'A'
 
@@ -215,13 +215,19 @@ def mat_lit():
     # Ternary operator fun for ya
     # re.fullmatch returns a match object that evaluates to True or False if the entirity of the literal arguments are matched
     # Match objects: https://docs.python.org/3/library/re.html#match-objects
-    'Match' if re.fullmach(pattern, '02215') else 'No match'
+    'Match' if re.fullmatch(pattern, '02215') else 'No match'
 
     # Notice the regular expression is a raw string. This is to prevent any escaping before the string is passed
     # to the fullmatch() method
     'Valid' if re.fullmatch(r'\d{5}', '02215') else 'Invalid'
 
-    
+
+
+#   regular expression object:  an object that is returned from the compile() function, supports a variety of functions
+#   match object:               the object returned from a matching function: https://docs.python.org/3/library/re.html#match-objects
+
+
+
 
 ### Regular Expressions -- Replacing Subsstrings and Splitting Strings
 def sub_spl():
@@ -258,13 +264,13 @@ def re_ser():
 
 ### Regular Expressions -- Capturing Substrings in a Match
 def cap_sub():
-    # Paranthesis () define a set of regular expressions to match. 
+    # Paranthesis () define a set of regular expressions to match.
     # Each subexpression (paranthesis containg a regular expressions) will be returned as a group.
-    # These matches can be obrtained using the object groups() method
+    # These matches can be obtained using the object groups() method
     text = 'Charlie Cyan, e-mail: demo@example.com'
     pattern = r'([A-Z][a-z]+ [A=Z][a-z]+), e-mail: (\w+@\w+\.\w{3})'
 
-    result = re.search(text, pattern)
+    result = re.search(pattern, text)
 
     # Note, the tuple indexing on the group() tuple starts at 1 because 0 represents the entire string
     print(result.groups())                  # Tuple -- ('Charlie Cyan', 'demo@example.com')

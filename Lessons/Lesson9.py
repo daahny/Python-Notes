@@ -3,7 +3,7 @@
 
 
 ### Files
-# Text files are viewed as a sequence of chracters. 
+# Text files are viewed as a sequence of characters. 
 # The first index is the first character
 #
 # Binary files are viewed as a sequence of bytes (images, videos)
@@ -53,7 +53,7 @@ def txt_upd():
     with open('accounts.txt', 'r') as accounts, open('temp_file.txt', 'w') as temp_file:
         for record in accounts:
             account, name, balance = record.split()
-            if name != '300':
+            if account != '300':
                 temp_file.write(record)
             else:
                 new_record = ' '.join([account, 'Williams', balance])
@@ -67,7 +67,7 @@ def txt_upd():
 
 
 ### Other File Object Methods
-# read()            No arguments - entire contents of file. Number n argumentspecifies number of characters to retrieve
+# read()            No arguments - entire contents of file. Number n argument specifies number of characters to retrieve
 # readline()        Returns one line of text as a string, including the newline. Returns empty string on end-of-file
 # write()           writes a string to one line
 # writelines()      Writes of a sequence of strings to a file
@@ -102,6 +102,7 @@ def ser_obj():
 ### Serialization with JSON -- Deserializing a JSON Object into Python
 def dsr_obj():
     with open('accounts.json', 'r') as accounts:
+        # load() accepts a file object and loads JSON. It returns a Python dictionary.
         accounts_dict = json.load(accounts)
 
     accounts_dict['accounts']
@@ -119,8 +120,6 @@ def for_jsn():
 
 ### Serialization with JSON -- Bringing it all together
 def jsn_fin():
-    import json
-
     accounts_dict = {'accounts': [{'account': 100, 'name': 'Jones', 'balance': 24.98}, 
                                 {'account': 200, 'name': 'Doe', 'balance': 345.67}]}
 
@@ -129,3 +128,30 @@ def jsn_fin():
 
     with open('accounts.json', 'r') as accounts:
         print(json.dumps(json.load(accounts), indent=4))
+
+
+
+### Handling Exceptions
+# A number of exceptions can be thrown at runtime relating to file operations
+# FileNotFoundError     Open a non-existent file for reading
+# PermissionsError      Attempt an unauthorized operation
+# ValueError            Attempt to write to a closed file
+
+# Try statement
+# try:      (stuff that may throw errors)
+# except:   (stuff that executes if an error is thrown)
+# else:     (stuff that executes only if no errors were thrown)
+
+def try_sta():
+    while True:
+        try:
+            number_one = input('Enter numerator: ')
+            number_two = input('Enter denominator: ')
+            result = number_one / number_two
+        except ValueError:
+            print('You must input only integers!')
+        except ZeroDivisionError:
+            print('Cannot divide by zero!')
+        else:
+            print(f'{number_one:.3f} / {number_two:.3f} = {result:.3f}')
+            break
