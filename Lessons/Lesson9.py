@@ -141,6 +141,7 @@ def jsn_fin():
 # try:      (stuff that may throw errors)
 # except:   (stuff that executes if an error is thrown)
 # else:     (stuff that executes only if no errors were thrown)
+# finally:  (stuff that executes always, at the end of a try statement)
 
 def try_sta():
     while True:
@@ -155,3 +156,35 @@ def try_sta():
         else:
             print(f'{number_one:.3f} / {number_two:.3f} = {result:.3f}')
             break
+
+
+
+### Raising Exceptions
+# Built-in exception:   https://docs.python.org/3/library/exceptions.html
+# All exceptions are instances of a class that derivces from BaseException.
+# A try statement catching an exception will also catch subclasses of that exception
+def rai_exn():
+    # ***Always release resources when applicable before raising an exception
+    raise BaseException
+    # BaseException is not meant to be directly inherited (use Exception instead)
+
+
+
+### Working with CSV Files
+import csv
+
+# Recommended to set the newline argument to '', as this allows the csv module to properly handle newline characters on its own (this functionality is built into the module)  
+with open('accounts.csv', mode='w', newline='') as accounts:
+    # csv.writer() accepts a text file object and returns a writer object used to write csv values
+    writer = csv.writer(accounts)
+    writer.writerow([100, 'Jones', 24.98])
+    writer.writerow([200, 'Doe', 345.67])
+    writer.writerow([300, 'White', 0.00])
+    writer.writerow([400, 'Black, Brown, Blue', 50.00])
+
+with open('accounts.csv', mode='r', newline='') as accounts:
+    reader = csv.reader(accounts)
+    # the reader object is an iterable, returning lists, each list containing fields of each record
+    print(reader.__next__())
+    for record in reader:
+        print(record)
