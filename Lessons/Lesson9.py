@@ -1,5 +1,16 @@
 ##### Lesson 9 #####
-### 
+### Files
+### Text File Processing -- open(), with, write(), read()
+### Text File Processing -- Updating 
+### Other File Object Methods -- read(), readlines(), write(), writelines()
+### Serialization with JSON -- Serializing
+### Serialization with JSON -- Deserializing
+### Serialization with JSON -- Display Formatted JSON Text
+### Serialization with JSON -- Bringing it all together
+### Handling Exceptions
+### Raising Exceptions
+### Working with CSVs
+
 
 
 ### Files
